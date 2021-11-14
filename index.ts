@@ -4,7 +4,8 @@ import { Enum_EstadoUsuario, Enum_Rol, Enum_TipoObjetivo } from './models/enums'
 import { ProjectModel } from './models/project';
 import { ObjectiveModel } from './models/objective';
 
-const crearProyectoConObjetivos = async () => {
+// METODOLOGÍA UNO - MUCHOS #1
+const crearProyectoConObjetivos1 = async () => {
     // CREAR UN USUARIO
     const usuario = await UserModel.create({
         nombre: "Roberto",
@@ -46,11 +47,9 @@ const crearProyectoConObjetivos = async () => {
     })
 
     console.log('proyecto creado', proyecto)
-    }
+};
 
-const main = async () => {
-    await conectarBD();
-
+const consultaProyectoConObjetivos = async () => {
     const proyecto = await ProjectModel.findOne({_id: '6191643f579438f8e1456f11'})
     console.log ('El proyecto encontrado es:', proyecto)
 
@@ -59,9 +58,73 @@ const main = async () => {
 
     // const ProyectoConObjetivos = {... proyecto, objetivos: objetivos };
     // console.log('El proyecto con objetivos es:', ProyectoConObjetivos)
+}
+
+// METODOLOGÍA UNO - MUCHOS #2
+const crearProyectoConObjetivos2= async () => {
+        // CREAR UN USUARIO
+        const usuario = await UserModel.create({
+            nombre: "Maia",
+            apellido: "Lopez",
+            correo: "mlopez.R@mail.com",
+            identificacion: "147852",
+            rol:  Enum_Rol.administrador,
+            estado: Enum_EstadoUsuario.autorizado
+    
+            });
+
+        // CREAR UN OBJETIVO GENERAL
+        const objetivoGeneral = await ObjectiveModel.create({
+            descripcion: "Objetivo general",
+            tipo: Enum_TipoObjetivo.general,
+            
+        })
+    
+        // // CREAR UN OBJETIVO ESPECIFICO
+        const objetivoEspecifico1 = await ObjectiveModel.create({
+            descripcion: "Objetivo especifico 1",
+            tipo: Enum_TipoObjetivo.especifico,
+            
+        })
+        const objetivoEspecifico2 = await ObjectiveModel.create({
+            descripcion: "Objetivo especifico 2",
+            tipo: Enum_TipoObjetivo.especifico,
+            
+        })
+
+        // CREAR UN PROYECTO
+        const proyecto = await ProjectModel.create({
+            nombre: "Proyecto 6",
+            fechaInicio: Date.now(),
+            fechaFin: new Date("2022/12/10"),
+            presupuesto: 1200,
+            lider: '6191643e579438f8e1456f0e',
+            objetivos: [
+                objetivoGeneral._id,
+                objetivoEspecifico1._id,
+                objetivoEspecifico2._id,
+            ]
+            
+        });
+    
+        console.log('proyecto creado', proyecto)
+};
+    
+
+
+
+
+const main = async () => {
+    await conectarBD();
+
+
+    
  
 };
 main();
+
+
+
 
 
 // ####################################################################################################################
