@@ -1,18 +1,39 @@
 import conectarBD from './db/db';
 import { UserModel } from './models/user'
-import { Enum_Rol } from './models/enums'
+import { Enum_Rol, Enum_TipoObjetivo } from './models/enums'
 import { ProjectModel } from './models/project';
+import { ObjectiveModel } from './models/objective';
 
 
 const main = async () => {
     await conectarBD();
 
-    
-    
-    
+    // CREAR OBJETIVOS
+    // const obj = ObjectiveModel.create({
+    //     descripcion: "Objetivo especifico",
+    //     tipo: Enum_TipoObjetivo.especifico, 
+    // })
+    // CRUD PROYECTOS
 
+    // CREAR PROYECTO
+    ProjectModel.create({
+        nombre: "Proyecto 3",
+        presupuesto: 500,
+        fechaInicio: Date.now(),
+        fechaFin: new Date("2022/11/10"),
+        lider: '6190575b808dcfa9c520711c',
+        objetivos: [
+            '619068dff5418a3f0a3734ef', '61906b3bc39bd8b9509e13d5'
+        ],
+    });
 
+    // BUSCAR UN PROYECTO
+    // const proyecto: any = await ProjectModel.find({nombre: 'Proyecto 2'}).populate('lider');
+    // console.log ('El proyecto es: ', proyecto);
 
+    // const lider = await UserModel.find({ _id: proyecto[0].lider });
+    // console.log('El lider del proyecto es: ', lider);
+ 
 };
 main();
 
@@ -71,22 +92,7 @@ main();
     //         console.error('Error eliminado el usuarios', e)
     //     });
 
-// CRUD PROYECTOS
-// CREAR PROYECTO
-    // ProjectModel.create({
-    //     nombre: "Proyecto 3",
-    //     presupuesto: 500,
-    //     fechaInicio: Date.now(),
-    //     fechaFin: new Date("2022/11/10"),
-    //     lider: '6190575b808dcfa9c520711c',
-    // })
 
-    // BUSCAR UN PROYECTO
-    // const proyecto: any = await ProjectModel.find({nombre: 'Proyecto 2'}).populate('lider');
-    // console.log ('El proyecto es: ', proyecto);
-
-    // const lider = await UserModel.find({ _id: proyecto[0].lider });
-    // console.log('El lider del proyecto es: ', lider);
 
 
 

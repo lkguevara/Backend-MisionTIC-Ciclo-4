@@ -48,15 +48,8 @@ const projectSchema = new Schema<Proyecto>({
   },
   objetivos: [
     {
-      descripcion: {
-        type: String,
-        required: true,
-      },
-      tipo: {
-        type: String,
-        enum: Enum_TipoObjetivo,
-        required: true,
-      },
+      type: Schema.Types.ObjectId,
+      ref: ObjectiveModel,
     },
   ],
 });
