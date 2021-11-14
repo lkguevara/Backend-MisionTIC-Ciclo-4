@@ -3,7 +3,7 @@
 import { connect } from 'mongoose'; //npm install mongoose//
 
 const conectarBD = async () => {
-  return await connect(process.env.DATABASE_URL)
+  return await connect("mongodb+srv://admin:admin@fenixprojects.yrtr4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     .then(() => {
       console.log('Conexion exitosa');
     })
