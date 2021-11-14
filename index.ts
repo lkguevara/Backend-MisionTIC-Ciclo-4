@@ -110,15 +110,17 @@ const crearProyectoConObjetivos2= async () => {
         console.log('proyecto creado', proyecto)
 };
     
-
+const consultaProyectoConObjetivos2 = async () => {
+    const proyecto = await ProjectModel.find({_id: '6191643f579438f8e1456f11'}).populate('objetivos')
+    console.log ('El proyecto encontrado es:', proyecto)
+};
 
 
 
 const main = async () => {
     await conectarBD();
 
-
-    
+  
  
 };
 main();
