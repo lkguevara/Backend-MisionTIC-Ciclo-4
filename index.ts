@@ -1,44 +1,70 @@
 import conectarBD from './db/db';
 import { UserModel } from './models/user'
-import { Enum_Rol, Enum_TipoObjetivo } from './models/enums'
+import { Enum_EstadoUsuario, Enum_Rol, Enum_TipoObjetivo } from './models/enums'
 import { ProjectModel } from './models/project';
 import { ObjectiveModel } from './models/objective';
 
+const crearProyectoConObjetivos = async () => {
+    // CREAR UN USUARIO
+    const usuario = await UserModel.create({
+        nombre: "Roberto",
+        apellido: "Jimenez",
+        correo: "Jimenez.R@mail.com",
+        identificacion: "78963",
+        rol:  Enum_Rol.administrador,
+        estado: Enum_EstadoUsuario.autorizado
+
+        });
+
+    // CREAR UN PROYECTO
+    const proyecto = await ProjectModel.create({
+        nombre: "Proyecto 5",
+        fechaInicio: Date.now(),
+        fechaFin: new Date("2022/12/10"),
+        presupuesto: 1200,
+        lider: '6191643e579438f8e1456f0e',
+        
+    });
+
+    // CREAR UN OBJETIVO GENERAL
+    const objetivoGeneral = await ObjectiveModel.create({
+        descripcion: "Objetivo general",
+        tipo: Enum_TipoObjetivo.general,
+        proyecto: proyecto._id,
+    })
+
+    // // CREAR UN OBJETIVO ESPECIFICO
+    const objetivoEspecifico1 = await ObjectiveModel.create({
+        descripcion: "Objetivo especifico 1",
+        tipo: Enum_TipoObjetivo.especifico,
+        proyecto: proyecto._id,
+    })
+    const objetivoEspecifico2 = await ObjectiveModel.create({
+        descripcion: "Objetivo especifico 2",
+        tipo: Enum_TipoObjetivo.especifico,
+        proyecto: proyecto._id,
+    })
+
+    console.log('proyecto creado', proyecto)
+    }
 
 const main = async () => {
     await conectarBD();
 
-    // CREAR OBJETIVOS
-    // const obj = ObjectiveModel.create({
-    //     descripcion: "Objetivo especifico",
-    //     tipo: Enum_TipoObjetivo.especifico, 
-    // })
-    // CRUD PROYECTOS
+    const proyecto = await ProjectModel.findOne({_id: '6191643f579438f8e1456f11'})
+    console.log ('El proyecto encontrado es:', proyecto)
 
-    // CREAR PROYECTO
-    ProjectModel.create({
-        nombre: "Proyecto 3",
-        presupuesto: 500,
-        fechaInicio: Date.now(),
-        fechaFin: new Date("2022/11/10"),
-        lider: '6190575b808dcfa9c520711c',
-        objetivos: [
-            '619068dff5418a3f0a3734ef', '61906b3bc39bd8b9509e13d5'
-        ],
-    });
+    const objetivos = await ObjectiveModel.findOne({project : '6191643f579438f8e1456f11'})
+    console.log ('Los objetivos del proyecto son:', objetivos);
 
-    // BUSCAR UN PROYECTO
-    // const proyecto: any = await ProjectModel.find({nombre: 'Proyecto 2'}).populate('lider');
-    // console.log ('El proyecto es: ', proyecto);
-
-    // const lider = await UserModel.find({ _id: proyecto[0].lider });
-    // console.log('El lider del proyecto es: ', lider);
+    // const ProyectoConObjetivos = {... proyecto, objetivos: objetivos };
+    // console.log('El proyecto con objetivos es:', ProyectoConObjetivos)
  
 };
 main();
 
 
-// CRUD 
+// ####################################################################################################################
 
 // CREAR UN USUARIO
     // await UserModel.create({
@@ -92,7 +118,32 @@ main();
     //         console.error('Error eliminado el usuarios', e)
     //     });
 
+// ########################################################################################################
 
+// CREAR OBJETIVOS
+    // const obj = ObjectiveModel.create({
+    //     descripcion: "Objetivo especifico",
+    //     tipo: Enum_TipoObjetivo.especifico, 
+    // })
+
+    // CREAR PROYECTO
+    // ProjectModel.create({
+    //     nombre: "Proyecto 4",
+    //     presupuesto: 500,
+    //     fechaInicio: Date.now(),
+    //     fechaFin: new Date("2022/12/10"),
+    //     lider: '6190575b808dcfa9c520711c',
+    //     objetivos: [
+    //         '619068dff5418a3f0a3734ef', '61906b3bc39bd8b9509e13d5'
+    //     ],
+    // });
+
+    // BUSCAR UN PROYECTO
+    // const proyecto: any = await ProjectModel.find({nombre: 'Proyecto 2'}).populate('lider').populate('objetivos');
+    // console.log ('El proyecto es: ', JSON.stringify(proyecto));
+
+    // const lider = await UserModel.find({ _id: proyecto[0].lider });
+    // console.log('El lider del proyecto es: ', lider);
 
 
 
