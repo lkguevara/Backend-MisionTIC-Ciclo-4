@@ -105,6 +105,50 @@ const crudProyectos= async () => {
             const proyecto = await ProjectModel.find({_id: '6191643f579438f8e1456f11'}).populate('objetivos')
             console.log ('El proyecto encontrado es:', proyecto)
         };
+
+        //LISTAR PROYECTOS
+
+         await ProjectModel.find()
+        .then((u) => {
+            console.log('Listado de proyectos:', u);
+             })
+        .catch((e) =>{
+             console.error('Error obteniendo los proyectos', e)
+            });
+
+        //EDITAR UN PROYECTO
+
+         await ProjectModel.findOneAndUpdate(
+         { nombre:  'Proyecto 1'},
+         {
+           
+            fechaFin: new Date("2022/12/11"),
+            presupuesto: 1500,
+            
+            
+         })
+         .then((u) => {
+            console.log('proyecto actualizado con éxito', u);
+         })
+         .catch((e) =>{
+             console.error('Error actualizando el proyecto', e)
+         });
+
+
+         // ELIMINAR UN PROYECTO
+        await ProjectModel.findOneAndDelete(
+            { nombre: 'Proyecto 1'},)
+        .then((u) => {
+            console.log('Proyecto eliminado con éxito', u);
+        })
+        .catch((e) =>{
+            console.error('Error eliminando el proyecto', e)
+        });
+
+
+       
+
+
 };
     
 const crudInscripcion = async () => {
@@ -119,6 +163,55 @@ const crudInscripcion = async () => {
     });
   
     console.log('Inscripción creada', inscripcion)
+
+
+    //LISTAR INSCRIPCIONES
+ 
+    await InscriptionModel.find()
+    .then((u) => {
+        console.log('Lista de inscripciones: ', u);
+    })
+    .catch((e) =>{
+        console.error('Error obteniendo lista de inscripciones', e)
+    });
+
+
+     // EDITAR UNA INSCRIPCION
+
+
+    // await InscriptionModel.findOneAndUpdate(
+    //     {id: "6193d5d512714660ca11fcfa"},
+    //     {
+    //         estado: "Rechazado",
+            
+    //     })
+    // .then((u) => {
+    //     console.log('usuario actualizado con éxito', u);
+    // })
+    // .catch((e) =>{
+    //     console.error('Error actualizando el usuarios', e)
+    // });
+
+
+
+
+        // ELIMINAR UNA INSCRIPCION
+
+    await InscriptionModel.findOneAndDelete(
+        { id: "6193d5d512714660ca11fcfa"},)
+    .then((u) => {
+        console.log('inscripcion eliminada con éxito', u);
+    })
+    .catch((e) =>{
+        console.error('Error eliminando inscripcion', e)
+    });
+
+    
+
+
+
+
+
 }
 
 const crudAvance = async () => {
@@ -133,6 +226,47 @@ const crudAvance = async () => {
     });
   
     console.log('Avance creado', avance)
+
+     // LISTAR AVANCES
+
+    await AdvancementModel.find()
+    .then((u) => {
+        console.log('Los avances son:', u);
+    })
+    .catch((e) =>{
+        console.error('Error obteniendo los avances', e)
+    });
+
+
+        // EDITAR UN AVANCE
+    // await AdvancementModel.findOneAndUpdate(
+    //     { id: "6191740015f039fed0e034b9"},
+    //     {
+    //         observaciones: "Miguel realizo CRUD",
+            
+    //     })
+    // .then((u) => {
+    //     console.log('avance actualizado con éxito', u);
+    // })
+    // .catch((e) =>{
+    //     console.error('Error actualizando el avance', e)
+    // });
+
+
+        // ELIMINAR AVANCE
+
+    await  AdvancementModel.findOneAndDelete(
+        { id: "6193d63857aff13961a985e9"},)
+    .then((u) => {
+        console.log('avance eliminado con éxito', u);
+    })
+    .catch((e) =>{
+        console.error('Error eliminado avance', e)
+    });
+
+
+
+
 };
 
 
@@ -143,6 +277,10 @@ const main = async () => {
     
     // ESPACIO PARA INGRESAR EL CÓDIGO DEL CRUD
     
+     
+
+
+
 
 };
 main();
