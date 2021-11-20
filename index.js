@@ -1,10 +1,10 @@
-import conectarBD from './db/db';
-import { UserModel } from './models/user'
-import { Enum_EstadoUsuario, Enum_Rol, Enum_TipoObjetivo, Enum_EstadoInscripcion } from './models/enums'
-import { ProjectModel } from './models/project';
-import { ObjectiveModel } from './models/objective';
-import { InscriptionModel } from './models/inscripcion';
-import { AdvancementModel } from './models/avances';
+import conectarBD from './db/db.js';
+import { UserModel } from './models/user.js'
+//import { Enum_EstadoUsuario, Enum_Rol, Enum_TipoObjetivo, Enum_EstadoInscripcion } from './models/enums.js'
+import { ProjectModel } from './models/project.js';
+import { ObjectiveModel } from './models/objective.js';
+import { InscriptionModel } from './models/inscripcion.js';
+import { AdvancementModel } from './models/avances.js';
 
 
 // CRUD DATABASE
@@ -276,8 +276,7 @@ const main = async () => {
     await conectarBD();
     
     // ESPACIO PARA INGRESAR EL CÓDIGO DEL CRUD
-    
-     
+      
 
 
 
