@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import { ProjectModel } from './project.js';
-import { UserModel } from './user.js';
+import { ProjectModel } from '../proyecto/proyecto.js';
+import { UserModel } from '../usuario/usuario.js';
 
-const {Schema,model} = mongoose;
+const { Schema, model } = mongoose;
 
 // interface Avance {
 //   fecha: Date;
@@ -12,7 +12,7 @@ const {Schema,model} = mongoose;
 //   creadoPor: Schema.Types.ObjectId;
 // }
 
-const advancementSchema = new mongoose.Schema({
+const avanceSchema = new Schema({
   fecha: {
     type: Date,
     required: true,
@@ -38,6 +38,6 @@ const advancementSchema = new mongoose.Schema({
   },
 });
 
-const AdvancementModel = model('Avance', advancementSchema);
+const ModeloAvance = model('Avance', avanceSchema);
 
-export { AdvancementModel };
+export { ModeloAvance };

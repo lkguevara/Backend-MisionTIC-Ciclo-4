@@ -1,13 +1,11 @@
 import mongoose from 'mongoose';
-//import { Enum_TipoObjetivo } from './enums.js';
-import { ProjectModel } from './project.js';
-
-const {Schema,model} = mongoose;
+const { Schema, model } = mongoose;
+// import { Enum_TipoObjetivo } from './enums/enums.js';
+// import { ProjectModel } from './proyecto/proyecto.js';
 
 // interface Objective {
 //   descripcion: string;
 //   tipo: Enum_TipoObjetivo;
-  
 // }
 
 const objectiveSchema = new Schema({
@@ -17,10 +15,9 @@ const objectiveSchema = new Schema({
   },
   tipo: {
     type: String,
-    enum: ['General','Especifico'],
+    enum: ['GENERAL', 'ESPECIFICO'],
     required: true,
   },
-  
 });
 
 const ObjectiveModel = model('Objetivo', objectiveSchema);
