@@ -42,3 +42,4 @@ const inscriptionSchema = new Schema({
 const InscriptionModel = model('Inscripcion', inscriptionSchema);
 
 export { InscriptionModel };
+
