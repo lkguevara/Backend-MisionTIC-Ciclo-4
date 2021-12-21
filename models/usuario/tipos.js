@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 const tiposUsuario = gql`
   type Usuario {
-    _id: ID!
+    _id: ID
     nombre: String!
     apellido: String!
     identificacion: String!
