@@ -1,6 +1,10 @@
 {
   "name": "gestion-proyectos-mintic-back",
   "version": "1.0.0",
+  "engines": {
+    "npm": "5.6.0",
+    "node": "8.10.0"
+  },
   "main": "index.js",
   "license": "MIT",
   "scripts": {
