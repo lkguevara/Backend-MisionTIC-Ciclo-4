@@ -32,7 +32,7 @@ const tiposUsuario = gql`
 
   type Query {
     Usuarios(filtro: FiltroUsuarios): [Usuario]
-    Usuario(_id: String): Usuario
+    Usuario(_id: String!): Usuario
   }
 
   type Mutation {
